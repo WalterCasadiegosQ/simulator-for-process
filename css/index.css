@@ -44,10 +44,12 @@ th {
     width: 100%;
     height: 200px; /* Altura de ejemplo */
     overflow: auto;
+  }
+  
+  .ocultar{
     visibility: hidden;
     display: none;
   }
-  
   .table-wrapper table {
     border-collapse: separate;
     border-spacing: 0;

@@ -66,7 +66,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <br><br>
         <div id="inputContainer">
             <p>From the previous labels you must write your string containing the information of the process. Each line of code is identified by a sequential number. </p>
-            <input type="text" id="processInput" placeholder="1,2,3,I,T...">
+            <input type="text" id="processInput" placeholder="1,2,3,I,T..." >
             <button onclick="addProcess()">Add information Process</button>
             <p> Memory-loaded processes:
             <p id="size"></p>
@@ -100,13 +100,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <h2>Dispatcher Process(Process States for the trace)</h2>
         <button onclick="dispatcher()">Dispatcher Run</button>
         <p id="outDistpatcher"></p>
-        <div id="tablaProcesos" class="table-wrapper">
+        <div id="tablaProcesosSimulacion" class="table-wrapper ocultar">
             <table>
+                <thead id="cabeceroTabla">
+                </thead>
+                <tbody id="cuerpoTabla">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="tablaProcesosContainer" class="ocultar">
+            <h2>Tabla de Procesos</h2>
+            <table id="tablaProcesos">
                 <thead>
                     <tr>
+                        <th>Proceso</th>
+                        <th>Tiempo de Ejecución</th>
+                        <th>Estado Final</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Aquí se llenará la tabla dinámicamente -->
                 </tbody>
             </table>
         </div>
