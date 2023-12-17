@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Operating System-UFPS</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/index.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            
+            
+            <img src="img/sello.png" alt="Logo" width="300" height="100">
+            
+            <a class="navbar-brand" href="#">Operating Systems course</a>
+            
+            
+        </nav>
+        <br/><br/><br/><br/>
+
+        <h1> Simulator for Process States for the trace </h1>
+        <br/><br/><br/>
+        <p> <!-- comment -->
+            Enter the process data (Click on the add button as many times as you would like to register additional processes).
+        </p>
+
+
+
+ <h2>Process Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Label</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>I</td>
+                    <td>I/O Statement</td>
+                </tr>
+                <tr>
+                    <td>F</td>
+                    <td>Finish Task</td>
+                </tr>
+                <tr>
+                    <td>T</td>
+                    <td>Time-out</td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <div id="inputContainer">
+            <p>From the previous labels you must write your string containing the information of the process. Each line of code is identified by a sequential number. </p>
+            <input type="text" id="processInput" placeholder="1,2,3,I,T...">
+            <button onclick="addProcess()">Add information Process</button>
+            <p> Memory-loaded processes:
+            <p id="size"></p>
+            <p>
+        </div>
+
+        <h2>Process Table</h2>
+        <button onclick="showR()">Show</button>
+        <table id="OutsTable">
+            <thead>
+                <tr>
+                    <th>Process ID</th>
+                    <th>Content</th>
+                </tr>
+            </thead>
+            <tbody id="outBody">
+            </tbody>
+        </table>
+
+        <hr/>
+        <h2>Read Data Dispatcher Cycles and Cycles Interrupts</h2>
+
+        
+        <div id="result"></div>
+        
+        <hr/>
+        
+  <button onclick="readAndDisplayData()">Enter Data</button>
+        
+
+        <h2>Dispatcher Process(Process States for the trace)</h2>
+        <button onclick="dispatcher()">Dispatcher Run</button>
+        <p id="outDistpatcher"></p>
+        <div id="tablaProcesos" class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Color</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="green">Green</td>
+                    <td>Running</td>
+                </tr>
+                <tr>
+                    <td class="grey">Grey</td>
+                    <td>Ready</td>
+                </tr>
+                <tr>
+                    <td class="red">Red</td>
+                    <td>Block</td>
+                </tr>
+                <tr>
+                    <td class="yellow">Yellow</td>
+                    <td>Finish</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        
+
+
+        <script src="js/script.js"></script>
+
+
+
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+
+    </body>
+</html>
