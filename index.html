@@ -74,7 +74,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         </div>
 
         <h2>Process Table</h2>
-        <button onclick="showR()">Show</button>
+        
         <table id="OutsTable">
             <thead>
                 <tr>
@@ -100,14 +100,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <h2>Dispatcher Process(Process States for the trace)</h2>
         <button onclick="dispatcher()">Dispatcher Run</button>
         <p id="outDistpatcher"></p>
-        <div id="tablaProcesosSimulacion" class="table-wrapper ocultar">
-            <table>
-                <thead id="cabeceroTabla">
-                </thead>
-                <tbody id="cuerpoTabla">
-                </tbody>
-            </table>
-        </div>
 
         <div id="tablaProcesosContainer" class="ocultar">
             <h2>Tabla de Procesos</h2>
@@ -120,12 +112,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Aquí se llenará la tabla dinámicamente -->
                 </tbody>
             </table>
         </div>
 
 
+        <div class="table-wrapper ocultar" id="tablaProcesosSimulacion">
+            <table>
+                <thead id="theadDraw"></thead>
+                <tbody id="tableDraw"></tbody>
+            </table>
+        </div>
+        
 
         <table>
             <thead>

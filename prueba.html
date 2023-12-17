@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="icon" type="https://cdn.sstatic.net/Sites/es/img/apple-touch-icon.png?v=7739871010e6
+" href="img/icons8-corona-96.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
+
+    <title>Operating Systems course</title>
+</head>
+
+<body>
+    <!--Menu-->
+
+    <div class="a" id="menu">
+        <nav class="navbar navbar-expand-lg text-center text-lg-start bg-dark text-muted colorBlack" id="nav">
+            <div class="container-fluid text-center">
+                <!-- Logo -->
+                <a class="navbar-brand mr-2 d-flex" href="index.html">
+                    <img src="img/ufpsLogo.png" width="70px" height="70px" class="mr-2 d-inline-block align-text-top"
+                        alt="Logo">
+
+                    <h3 class="text-light fw-bold  text-uppercase  mt-3 mr-2 "> &nbsp;Operating Systems course</h3>
+                </a>
+                <!-- Boton mediaQuery -->
+                <!-- Botones -->
+            </div>
+        </nav>
+    </div>
+
+    <!-- Modal -->
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <h3 class="text-uppercase mt-3 text-center fw-bold">Simulator for Process States for the trace</h3>
+            <p class="text-dark mt-3 ">
+                Enter the process data (Click on the add button as many times as you would like to register
+                additional
+                processes).
+            </p>
+            <div class="col-xl-6">
+
+
+
+                <h3 class="text-dark text-center fw-bold">Process Information</h3>
+                <table class="table  table-hover text-center fw-bold border border-dark mt-3">
+                    <thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>I</td>
+                            <td>I/O Statement</td>
+                        </tr>
+                        <tr>
+                            <td>F</td>
+                            <td>Finish Task</td>
+                        </tr>
+                        <tr>
+                            <td>T</td>
+                            <td>Time-out</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xl-6">
+                <h3 class="text-dark text-center fw-bold">Read Data
+
+                </h3>
+                <div class="text-center">
+                    <p class="fw-bold ">Add Dispatcher Cycles and Cycles Interrupts
+                        <button class="btn btn-outline-danger" onclick="readAndDisplayData()" title="Add Dispatcher Cycles and Cycles Interrupts" type="button">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                             width="20"
+                                height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                            </svg>
+                        </button>
+
+                    </p>
+                </div>
+
+
+
+                <div class="row g-3 align-items-center justify-content-center fw-bold ">
+                    <div class="col-auto ">
+                        <label for="inputPassword6" class="col-form-label">Dispatcher </label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="inputDispatcher" disabled
+                            class="form-control text-center text-dark fw-bold h3" aria-describedby="passwordHelpInline">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label"> Cycles </label>
+
+                    </div>
+                </div>
+                <br>
+                <div class="row g-3 align-items-center justify-content-center fw-bold">
+                    <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label">Interrupts &nbsp; </label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="inputInterrupts" disabled
+                            class="form-control text-center text-dark fw-bold h3" aria-describedby="passwordHelpInline">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label"> Cycles </label>
+                    </div>
+                </div>
+                <!-- <div id="result"></div> -->
+
+            </div>
+            <div class="col-xl-12">
+
+
+                <div id="inputContainer">
+                    <p>From the previous labels you must write your string containing the information of the process.
+                        Each line of
+                        code is identified by a sequential number.</p>
+                    <div class="input-group mb-3">
+                        <input type="text" id="processInput" class="form-control" placeholder="1,2,3,I,T...">
+                        <button onclick="addProcess()" class="btn btn-outline-danger">Add Information Process</button>
+                    </div>
+
+
+                    <p>Memory-loaded processes:</p>
+                    <p id="size"></p>
+                </div>
+
+                <h3 class="text-dark text-center fw-bold">Process Table</h3>
+                <!-- <button onclick="showR()" class="btn btn-success">Show</button> -->
+                <div class="table-responsive">
+                <table id="OutsTable" class="table table-hover border border-dark  text-center">
+                    <thead>
+                        <tr>
+                            <th>Process ID</th>
+                            <th>Content</th>
+                        </tr>
+                    </thead>
+                    <tbody id="outBody">
+                        <td>-</td>
+                        <td>-</td>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+            </div>
+        </div>
+        <div class="row">
+            <h3 class="text-dark text-center fw-bold">Dispatcher Process(Process States for the trace)</h3>
+
+
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <button onclick="dispatcher()" class="btn btn-outline-danger">Dispatcher Run</button>
+                    </div>
+                    <div class="col-xl-4">
+                        <button onclick="exampleDraw()" title="Load example in class" class="btn btn-outline-danger">Load Example</button>
+                    </div>
+                    <div class="col-xl-4">
+                        <button onclick="clearDispatcher()" class="btn btn-outline-danger">Dispatcher Clear</button>
+                    </div>
+                </div>
+                
+                <p id="outDistpatcher" class="text-center text-danger fw-bold h5"></p>
+                <div class="row">
+                    <div class="col-xl-12 text-center fw-bold mt-3" id="mensaje"></div>
+                </div>
+
+            </div>
+            <div class="col-xl-6">
+                <table class="table  table-hover text-center border border-dark">
+                    <thead>
+                        <tr>
+                            <th>Color</th>
+                            <th>State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="bg-success">Green</td>
+                            <td>Running</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-secondary">Grey</td>
+                            <td>Ready</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-danger">Red</td>
+                            <td>Block</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-warning">Yellow</td>
+                            <td>Finish</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-light">
+                            <tr id="theadDraw">
+
+                            </tr>
+                        </thead>
+                        <tbody id="tableDraw">
+
+
+                        </tbody>
+                    </table>
+                </div>
+            
+        </div>
+    </div>
+
+
+    <footer class="text-center text-lg-start bg-light text-muted footer">
+        <div class="row">
+
+            <div class="col-xl-12 text-center justify-content-center align-items-center">
+                <img src="./img/sello.png" class="img-fluid" alt="...">
+            </div>
+
+            <div class="col-xl-12 justify-content-center">
+                <div class="me-5 text-center text-white text-uppercase">
+                    <a href="https://ww2.ufps.edu.co/" class="link-underline-dark text-reset"> <span>Francisco de Paula
+                            Santander University</span></a>
+                </div>
+            </div>
+        </div>
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+
+
+            <!-- Left -->
+
+            <!-- Right -->
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5 text-light">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-light  fw-bold mb-4 text-uppercase">Operating Systems course
+                        </h6>
+
+
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-light  fw-bold mb-4">
+                            PROJECT
+                        </h6>
+                        <p>
+                            <a href="#" class="text-reset">SIMULATOR FOR PROCESS STATES FOR THE TRACE</a>
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            ciroalfonsoqude@ufps.edu.co
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> + 315 7078 528</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center text-light p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © <span id="currentYear"></span> Copyright:
+            <a class="text-reset fw-bold" href="https://github.com/cquintero99" target="_blank">CQUINTERO99</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <script src="./js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Obtener el año actual
+        var currentYear = new Date().getFullYear();
+
+        // Insertar el año en el elemento con el ID "currentYear"
+        document.getElementById("currentYear").innerHTML = currentYear;
+    </script>
+
+
+</body>
+
+</html>
