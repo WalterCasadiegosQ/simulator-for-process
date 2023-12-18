@@ -5,6 +5,7 @@
 
 
 let PROCESS = [];
+let ACTUALPROCESS = [];
 let cyclesDispatcher=0;
 let cyclesInterrupts=0;
 let TotalEjecucion= [];
@@ -36,11 +37,30 @@ document.getElementById("processInput").addEventListener("input", function(event
 function addProcess() {
     const inputElement = document.getElementById('processInput');
     let infoProcess = inputElement.value.trim();
-
+    let secuenciales = true;
     if(infoProcess[infoProcess.length-1]===","){
         infoProcess = infoProcess.slice(0, -1);
     }
+    let elementos2 = infoProcess.split(',');
+    elementos2 = elementos2.filter(elemento => !/[^\d]/.test(elemento));
 
+    for(let i = 0; i<elementos2.length-1; i++){
+        if(1+ Number(elementos2[i]) != elementos2[i+1]){
+            secuenciales = false;
+            document.getElementById("processInput").value="";
+            alert("LAS DIRECCIONES INGRESADAS NO SON SECUENCIALES");
+            break;
+        }
+        if(Number(elementos2[i]) >=100 && Number(elementos2[i]) <=100 + Number(cyclesDispatcher)){
+            secuenciales = false;
+            document.getElementById("processInput").value="";
+            alert("LAS DIRECCIONES NO PUEDEN SER IGUALES A LAS DEL DISPATCHER");
+        }else if( Number(elementos2[i]) ===100){
+            secuenciales = false;
+            document.getElementById("processInput").value="";
+            alert("LAS DIRECCIONES NO PUEDEN SER IGUALES A LAS DEL DISPATCHER");
+        }
+    }
     let todosLosProcesos = '';
     for(let i = 0; i<PROCESS.length;i++){
         todosLosProcesos += PROCESS[i] + ",";
@@ -49,10 +69,11 @@ function addProcess() {
     todosLosProcesos+= infoProcess;
     let elementos = todosLosProcesos.split(',');
     elementos = elementos.filter(elemento => !/[^\d]/.test(elemento));
+    
     let conjuntoUnico = new Set(elementos);
     let formatoCorrecto = procesarinfoProcess(infoProcess);
 
-    if (elementos.length === conjuntoUnico.size && formatoCorrecto) {
+    if (elementos.length === conjuntoUnico.size && formatoCorrecto && secuenciales) {
         if (infoProcess !== '') {
             PROCESS.push(infoProcess);
             inputElement.value = '';
@@ -60,8 +81,9 @@ function addProcess() {
             showR();
         }
     } else {
-        if(formatoCorrecto){
-            alert("NO PUEDES INGRESAR DIRECCIONES REPETIDAS")
+        if(formatoCorrecto && secuenciales){
+            document.getElementById("processInput").value="";
+            alert("NO PUEDES INGRESAR DIRECCIONES REPETIDAS");
         }
     }
 }
@@ -94,6 +116,7 @@ function procesarinfoProcess(infoProcess) {
     if (infoProcess !== "" && excluyentes.test(infoProcess)) {
         return true;
     } else {
+        document.getElementById("processInput").value="";
         alert("La entrada no es válida. Ingrese en el formato correcto (por ejemplo, 1,2,3,I,5,F ).");
         return false;
     }
@@ -118,8 +141,7 @@ function dispatcher(){
     }
 
     if (PROCESS.length >= 0 && cyclesDispatcher > 0 && cyclesInterrupts > 0) {
-        // Guardar una copia de PROCESS en PROCESSCURRENT
-        PROCESSCURRENT = PROCESS.slice();
+        ACTUALPROCESS = PROCESS.slice();
         ejecutarProcesos()
         verficiarFinishTask()
         cargarProcesosVista();
@@ -190,10 +212,11 @@ function ejecutarProcesos() {
             let pdArray = pdArrayString ? JSON.parse(pdArrayString) : [];
             let ArrayString = localStorage.getItem(`P-${i}`);
             let pIdArray = ArrayString ? JSON.parse(ArrayString) : [];
+            let color = "grey";
 
             if (pdArray.length > pIdArray.length) {
                 for (let j = pIdArray.length; j < pdArray.length; j++) {
-                    pIdArray.push("grey")
+                    pIdArray.push("grey");
 
 
                 }
@@ -203,6 +226,11 @@ function ejecutarProcesos() {
                 if (instructions[j] !== "") {
                     if (instructions[j] === "I" || instructions[j] === "T") {
                         pIdArray.push("red")
+                        if(countInstructions===(nInstructions-1)){
+                            color = "red";
+                        }else{
+                            color = "grey";
+                        }
                         pdArray.push("green")
                         numberCyclesDispatcher--;
                         total++;
@@ -210,6 +238,11 @@ function ejecutarProcesos() {
                         j = cyclesInterrupts
                     } else if (instructions[j] === "F") {
                         pIdArray.push("yellow")
+                        if(countInstructions===(nInstructions-1)){
+                            color = "white";
+                        }else{
+                            color = "grey";
+                        }
                         total++;
                         countInstructions++;
                         j = cyclesInterrupts
@@ -225,18 +258,28 @@ function ejecutarProcesos() {
                         let instruction = instructions[j + 1]
                         if (instruction === "I" || instruction === "T") {
                             pIdArray.push("red")
+                            if(countInstructions===(nInstructions-1)){
+                                color = "red";
+                            }else{
+                                color = "grey";
+                            }
                             pdArray.push("green")
                             numberCyclesDispatcher--;
                             countInstructions++;
                             total++;
-                            break;
+                         
                         } else if (instruction === "F") {
                             pIdArray.push("yellow")
+                            if(countInstructions===(nInstructions-1)){
+                                color = "white";
+                            }else{
+                                color = "grey";
+                            }
                             pdArray.push("green")
                             countInstructions++;
                             numberCyclesDispatcher--;
                             total++
-                            break;
+                      
                         }
                     }
                 } else {
@@ -248,7 +291,7 @@ function ejecutarProcesos() {
             if (!estado) {
                 PROCESS[i] = instructions.slice(countInstructions).join(",");
                 for (let j = 0; j < numberCyclesDispatcher; j++) {
-                    pIdArray.push("grey");
+                    pIdArray.push(color);
                     pdArray.push("green");
                     total++;
                 }
@@ -260,8 +303,8 @@ function ejecutarProcesos() {
 }
 
 function verficiarFinishTask() {
-    for (let i = 0; i < PROCESSCURRENT.length; i++) {
-        const instructions = PROCESSCURRENT[i].split(",");
+    for (let i = 0; i < ACTUALPROCESS.length; i++) {
+        const instructions = ACTUALPROCESS[i].split(",");
         let nInstructions = instructions.length;
         let ultima = instructions[Number(nInstructions-1) ]
        
@@ -346,7 +389,7 @@ function cargarProcesosVista() {
       theadDraw.innerHTML = thead;
       tableDraw.innerHTML = tableBody;
 
-    PROCESS = PROCESSCURRENT.slice();
+    PROCESS = ACTUALPROCESS.slice();
     localStorage.clear()
     total = 0;
 }

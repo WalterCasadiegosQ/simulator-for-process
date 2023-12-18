@@ -30,10 +30,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
             
             
         </nav>
-        <br/><br/><br/><br/>
+        <br/><br/>        <br/><br/>
 
         <h1> Simulator for Process States for the trace </h1>
-        <br/><br/><br/>
+        <br/><br/>
+        <h4 >Realizado por: <b>Walter Casadiegos - 1152189</b> / <b>Daniel Cañizares - 1152203</b></h4>
+        <br/>
         <p> <!-- comment -->
             Enter the process data (Click on the add button as many times as you would like to register additional processes).
         </p>
@@ -100,31 +102,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <h2>Dispatcher Process(Process States for the trace)</h2>
         <button onclick="dispatcher()">Dispatcher Run</button>
         <p id="outDistpatcher"></p>
-
-        <div id="tablaProcesosContainer" class="ocultar">
-            <h2>Tabla de Procesos</h2>
-            <table id="tablaProcesos">
-                <thead>
-                    <tr>
-                        <th>Proceso</th>
-                        <th>Tiempo de Ejecución</th>
-                        <th>Estado Final</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-
-
-        <div class="table-wrapper ocultar" id="tablaProcesosSimulacion">
-            <table>
-                <thead id="theadDraw"></thead>
-                <tbody id="tableDraw"></tbody>
-            </table>
-        </div>
-        
-
         <table>
             <thead>
                 <tr>
@@ -151,6 +128,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </tr>
             </tbody>
         </table>
+
+        <div id="tablaProcesosContainer" class="ocultar">
+            <h2>Informacion de Procesos</h2>
+            <table id="tablaProcesos">
+                <thead>
+                    <tr>
+                        <th>Proceso</th>
+                        <th>Tiempo de Ejecución</th>
+                        <th>Estado Final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+        
+        <div class="table-wrapper ocultar" id="tablaProcesosSimulacion">
+            <h2>Trazas de Procesos</h2>
+            <table>
+                <thead id="theadDraw"></thead>
+                <tbody id="tableDraw"></tbody>
+            </table>
+        </div>
+        
+
+        
 
 
         
